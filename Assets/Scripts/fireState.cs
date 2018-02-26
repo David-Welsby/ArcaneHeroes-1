@@ -43,14 +43,7 @@ public class fireState : State<AI>
 
     public override void UpdateState(AI owner)
     {
-        AI.Instance.attack.SetActive(true);
-        AI.Instance.fire(AI.Instance.attack, AI.Instance.attackSpawn, AI.Instance.attackSpawn);
-
-
-
-
-
-
+     
 
         if (owner.currentState == (int)AI.AIState.chase)
         {

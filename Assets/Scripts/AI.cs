@@ -68,7 +68,7 @@ using state;
             {
                 currentState = (int)AIState.chase;
 
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-movementSpeed, 0);
+                moveLeft(movementSpeed);
 
                 facingRight = false;
 
@@ -77,7 +77,10 @@ using state;
                 if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 5)
                 {
                     currentState = (int)AIState.fire;
+                    attack.SetActive(true);
+                    ExecuteSpellAfterTime(attack, 2.0f, attackSpawn, attackSpawn);
                 }
+              
             }
             else
             {

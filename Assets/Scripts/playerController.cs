@@ -8,10 +8,28 @@ public class playerController : gameEntity
 
     //Everything concerning movement and jumping
 
-    
-   // int numberOfSpells;
-   
-   
+
+    // int numberOfSpells;
+
+    private static playerController _instance;
+
+    public static playerController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new playerController();
+            }
+
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     public Slider health;
     public Slider mana;
@@ -142,19 +160,19 @@ public class playerController : gameEntity
         if (Input.GetKeyDown("space") && grounded == true)
         {
             anim.SetInteger("state", 2);
-            jump();
+            jump(jumpForce);
         }
         else  if (Input.GetKey("r") && coolDown <= 0)
         {
             anim.SetInteger("state", 3);
 
-            StartCoroutine(ExecuteSpellAfterTime(animationTime));
+            StartCoroutine(ExecuteSpellAfterTime(Spells[spellSelect], animationTime, staff.transform, staff1.transform));
             coolDown = 2.0f;
         }
         else if (Input.GetKey("a"))
         {
             facingRight = false;
-            moveLeft();
+            moveLeft(movementSpeed);
 
             if (grounded == true)
             {
@@ -165,7 +183,7 @@ public class playerController : gameEntity
         {
 
             facingRight = true;
-            moveRight();
+            moveRight(movementSpeed);
             if (grounded == true)
             {
                 anim.SetInteger("state", 1);

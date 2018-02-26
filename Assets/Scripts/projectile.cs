@@ -10,11 +10,11 @@ public class projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        
-        /*if(gameEntity.facingRight == false)
+
+        if (playerController.Instance.facingRight == false || AI.Instance.facingRight == false)
         {
             speed = -speed;
-        }*/
+        }
 
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(speed, 0));
         Destroy(gameObject, lifeTime);
