@@ -6,6 +6,7 @@ public class fireState : State<AI>
 {
     private static fireState instance;
 
+    
     private fireState()
     {
         if (instance != null)
@@ -43,8 +44,8 @@ public class fireState : State<AI>
 
     public override void UpdateState(AI owner)
     {
-     
 
+        
         if (owner.currentState == (int)AI.AIState.chase)
         {
             owner.stateMachine.ChangeState(chaseState.Instance);

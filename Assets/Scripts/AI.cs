@@ -42,9 +42,9 @@ using state;
         public GameObject attack;
         public Transform attackSpawn;
         public GameObject spawn;
+        float timer = 2.0f;
 
-
-        public AIStateMachine<AI> stateMachine { get; set; }
+    public AIStateMachine<AI> stateMachine { get; set; }
 
         new private void Start()
         {
@@ -77,10 +77,17 @@ using state;
                 if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 5)
                 {
                     currentState = (int)AIState.fire;
-                    attack.SetActive(true);
-                    ExecuteSpellAfterTime(attack, 2.0f, attackSpawn, attackSpawn);
+
+                    if (timer <= 0)
+                    {
+                        attack.SetActive(true);
+                        fire(attack, attackSpawn, attackSpawn);
+                        timer = 2.0f;
+                    }
+
+
                 }
-              
+
             }
             else
             {
@@ -88,5 +95,7 @@ using state;
             }
             stateMachine.Update();
         }
+
+        timer -= Time.deltaTime;
         }
     }
