@@ -193,19 +193,6 @@ public class playerController : gameEntity
 
 
 
-        /*
-        for (int i = 0; i < numberOfSpells; i++)
-        {
-            if(Input.GetKeyDown("" + i))
-            {
-                spellSelect = i;
-
-                changeSpell(spellSelect);
-            }
-        }
-      */
-
-        
 
     }
 

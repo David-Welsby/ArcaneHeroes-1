@@ -23,7 +23,7 @@ public class gameEntity : MonoBehaviour {
     protected float animationTime = 0.4f;
     protected Rigidbody2D rigid;
 
-    public static bool facingRight;
+    protected bool facingRight;
 
     public Animator anim;
 

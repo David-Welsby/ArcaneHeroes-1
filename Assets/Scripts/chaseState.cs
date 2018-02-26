@@ -42,13 +42,6 @@ public class chaseState : State<AI>
 
     public override void UpdateState(AI owner)
     {
-        if (AI.Instance.grounded == true)
-        {
-            AI.Instance.GetComponent<Rigidbody2D>().velocity = new Vector2(-AI.Instance.movementSpeed / 2, 0);
-        }
-        
-
-
 
         if (owner.currentState == (int)AI.AIState.idle)
         {

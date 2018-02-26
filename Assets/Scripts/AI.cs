@@ -51,26 +51,30 @@ using state;
             stateMachine = new AIStateMachine<AI>(this);
             stateMachine.ChangeState(idleState.Instance);
             rigid = gameObject.GetComponent<Rigidbody2D>();
-            whatIsGround = LayerMask.GetMask("Water");
+            whatIsGround = LayerMask.GetMask("Default");
 
-
+            
             spawn.transform.position = transform.position;
 
         }
 
         private void Update()
         {
-
+        if (player)
+        {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
-            if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 10)
+            if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 10 && grounded == true)
             {
                 currentState = (int)AIState.chase;
 
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(-movementSpeed, 0);
+
                 facingRight = false;
 
-                
-                if(Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 5)
+
+
+                if (Vector3.Distance(new Vector3(transform.position.x, 0, 0), new Vector3(player.transform.position.x, 0, 0)) <= 5)
                 {
                     currentState = (int)AIState.fire;
                 }
@@ -79,8 +83,7 @@ using state;
             {
                 currentState = (int)AIState.idle;
             }
-
-
             stateMachine.Update();
+        }
         }
     }

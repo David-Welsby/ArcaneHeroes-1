@@ -45,13 +45,13 @@ public class idleState : State<AI>
 
     public override void UpdateState(AI owner)
     {
-        if (timer <= 0 && AI.Instance.transform.position.x != AI.Instance.spawn.transform.position.x)
+       /* if (timer <= 0 && AI.Instance.transform.position.x != AI.Instance.spawn.transform.position.x)
         {
 
             float step = AI.Instance.movementSpeed * Time.deltaTime;
             AI.Instance.transform.position = Vector3.MoveTowards(AI.Instance.transform.position, AI.Instance.spawn.transform.position, step);
 
-        }
+        }*/
         timer -= Time.deltaTime;
 
         if(owner.currentState == (int)AI.AIState.chase)
